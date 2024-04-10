@@ -30,10 +30,10 @@ byte colPins[COLS] = {
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
-char codeInput[8];
+char codeInput[4];
 byte time[4];
 boolean refresh = true;  //1 refresh one time...
-char password[8];
+char password[4];
 int key = -1;
 char lastKey;
 char var;
@@ -216,28 +216,28 @@ void keypadEvent(KeypadEvent key) {
   }
 }
 
-char* menu1[] = { "Modos", "Sabotagem", "Dominação", "Configuração" };
-char* menu2[] = { "Config Jogo", "Config Som", "Teste de Relé", "Teste Auto" };
-char* GAME_TIME = "Tempo de Jogo:";
-char* BOMB_TIME = "Tempo da Bomba:";
-char* ZERO_MINUTES = "00 minutos";
-char* ARM_TIME = "Tempo de Armar:";
-char* ZERO_SECS = "00 segundos";
-char* ENABLE_SOUND = "Ativar Som?";
-char* YES_OR_NOT = "A: Sim B: Não";
-char* ENABLE_RELAYPIN = "Ativar Relé?";
-char* ENABLE_CODE = "Ativar Código de Armar?";
-char* GAME_TIME_TOP = "TEMPO DE JOGO";
-char* ARMING_BOMB = "ARMANDO A BOMBA";
-char* ENTER_CODE = "Digite o Código";
-char* CODE_ERROR = "Erro no Código!";
-char* BOMB_ARMED = "BOMBA ARMADA";
-char* DETONATION_IN = "DETONAÇÃO EM";
-char* DISARMING = "DESARMANDO A BOMBA";
-char* DISARM = "DESARMAR";
-char* GAME_OVER = " FIM DO JOGO! ";
-char* DEFENDERS_WIN = " DEFENSORES VENCEM ";
-char* SABOTAGE_FAIL = "FALHA NA SABOTAGEM!";
+  char* menu1[]={"Search&Destroy","Sabotage","Domination", "Configuration"      };
+  char* menu2[]={"Game Config","Sound Config", "Relay Test", "Auto Test"      };   
+  char* GAME_TIME="Game Time:";
+  char* BOMB_TIME="Bomb Time:";
+  char* ZERO_MINUTES="00 minutes";
+  char* ARM_TIME="Arm Time:";
+  char* ZERO_SECS="00 seconds";
+  char* ENABLE_SOUND="Enable Sound?";
+  char* YES_OR_NOT="A : Yes B : No";
+  char* ENABLE_RELAYPIN="Enable Relay?";
+  char* ENABLE_CODE="Enable Code Arm?";
+  char* GAME_TIME_TOP="GAME TIME";
+  char* ARMING_BOMB = "ARMING BOMB";
+  char* ENTER_CODE = "Enter Code";
+  char* CODE_ERROR = "Code Error!";
+  char* BOMB_ARMED = "BOMB ARMED";
+  char* DETONATION_IN = "DETONATION IN";
+  char* DISARMING = "DISARMING BOMB" ;
+  char* DISARM = "DISARMING";
+  char* GAME_OVER = " GAME OVER! ";
+  char* DEFENDERS_WIN = " DEFENDERS WIN ";
+  char* SABOTAGE_FAIL= "SABOTAGE FAIL!";
 
 
 //##################MENUS###############################
@@ -611,7 +611,7 @@ boolean comparePassword() {
 void setCode() {
 
   lcd.setCursor(0, 1);
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 4; i++) {
     while (1) {
       var = getNumber();
       if (var != 'x') {
@@ -634,7 +634,7 @@ void setCodeTime() {
 
   timeCalcVar = millis();
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 4; i++) {
     while (1) {
       if (ACTIVATESECONDS * 1000 + timeCalcVar - millis() <= 100) {
         codeInput[i] = 'x';
@@ -664,7 +664,7 @@ void setCodeTime() {
 void setPass() {
   lcd.setCursor(0, 1);
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 4; i++) {
     while (1) {
       var = getNumber();
       if (var != 'x') {

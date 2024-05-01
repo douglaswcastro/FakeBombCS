@@ -98,9 +98,10 @@ void setup() {
   lcd.setCursor(3, 0);
 
   lcd.setCursor(0, 0);
-  lcd.print("BLUECORE TECH");  // you can add your team name or someting cool
+  lcd.print("BLACK WOLF");  // you can add your team name or someting cool
   lcd.setCursor(0, 1);
   lcd.print("AIRSOFT BOMB");  // you can add your team name or someting cool
+  delay(5000);
   keypad.setHoldTime(50);
   keypad.setDebounceTime(50);
   keypad.addEventListener(keypadEvent);
@@ -357,11 +358,11 @@ void config() {
 
         case 2:
           cls();
-          lcd.print("RELÉPIN LIGADO!");
+          lcd.print("RELAY PIN ON!");
           digitalWrite(RELAYPIN, HIGH);  // liga o relé (HIGH é o nível de tensão)
           delay(4000);                   // aguarda 4 segundos
           cls();
-          lcd.print("RELÉPIN DESLIGADO!");
+          lcd.print("RELAY PIN OFF!");
           digitalWrite(RELAYPIN, LOW);
           delay(2000);
           config();
@@ -457,8 +458,6 @@ menu2:
     lcd.noBlink();
     lcd.setCursor(13, 1);
     lcd.print("ok?");
-    //zona donde pasamos los items a
-    //redibujar
     while (1) {
       var = keypad.waitForKey();
       if (var == 'd')  //
@@ -593,11 +592,6 @@ menu3:
   //Continue the game :D
 }
 
-
-
-
-
-
 //This fuction compare codeInput[4] and password[4] variables
 boolean comparePassword() {
 
@@ -688,35 +682,32 @@ void setNewPass() {
   while (1) {
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Nova Senha");
+    lcd.print("Enter New Pass");
     setPass();
 
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Repita");
+    lcd.print("Retype Pass");
 
     setCode();
 
     if (comparePassword()) {
-
       lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("Senha OK!");
+      lcd.print("Password Set OK!");
       delay(2000);
       break;
     } else {
       lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("Erro!");
+      lcd.print("ERROR Dont Match!");
       if (soundEnable) tone(tonepin, errorTone, 200);
       delay(2000);
     }
   }
 }
+
 //Whait until a button is pressed is is a number return the number 'char' if not return x
-
-
-
 char getNumber() {
   while (1) {
     var = keypad.getKey();
@@ -796,12 +787,6 @@ byte getRealNumber() {
     return 11;
   }
 }
-
-
-
-
-
-
 
 //void getConfig(){
 //
@@ -923,24 +908,23 @@ void printTimeDom(unsigned long aTiempo, boolean showMillis) {
 void startGameCount() {
   lcd.clear();
   lcd.setCursor(1, 0);
-  lcd.print("Pronto para Começar");
+  lcd.print("Ready to Begin");
   lcd.setCursor(0, 1);
-  lcd.print("Pressione Qualquer Tecla");
+  lcd.print("Push ANY Button");
   keypad.waitForKey();  // se você pressionar um botão, o jogo começa
 
   cls();
   lcd.setCursor(1, 0);
-  lcd.print("Iniciando Jogo");
+  lcd.print("Starting Game");
   for (int i = 5; i > 0; i--) {  // INICIANDO CONTAGEM PARA O JOGO
     lcd.setCursor(5, 1);
     tone(tonepin, 2000, 100);
-    lcd.print("EM ");
+    lcd.print("IN ");
     lcd.print(i);
     delay(1000);
   }
   cls();
 }
-
 
 void checkArrows(byte i, byte maxx) {
 
@@ -974,9 +958,9 @@ void explodeSplash() {
   delay(100);
   endGame = false;
   lcd.setCursor(1, 0);
-  lcd.print("Terroristas Venceram");
+  lcd.print("TERRORISTS WIN");
   lcd.setCursor(4, 1);
-  lcd.print("Fim de Jogo");
+  lcd.print("GAME OVER");
   for (int i = 200; i > 0; i--)  // este é o som de explosão de ultra alta definição xD
   {
     tone(tonepin, i);
@@ -989,10 +973,9 @@ void explodeSplash() {
   delay(5000);
   cls();
 
-  // código de fim
-  lcd.print("Jogar Novamente?");
+  lcd.print("Play Again?");
   lcd.setCursor(0, 1);
-  lcd.print("A: Sim B: Não");
+  lcd.print("A : Yes B : No");
   while (1) {
     var = keypad.waitForKey();
     if (var == 'a') {
@@ -1025,9 +1008,9 @@ void failSplash() {
   delay(100);
   endGame = false;
   lcd.setCursor(1, 0);
-  lcd.print("TEMPO ESGOTADO");
+  lcd.print("  TIME OUT");
   lcd.setCursor(4, 1);
-  lcd.print("FIM DE JOGO");
+  lcd.print("GAME OVER");
   for (int i = 200; i > 0; i--)  // este é o som de explosão de ultra alta definição xD
   {
     tone(tonepin, i);
@@ -1040,10 +1023,9 @@ void failSplash() {
   delay(5000);
   cls();
 
-  // código de fim
-  lcd.print("Jogar Novamente?");
-  lcd.setCursor(0, 1);
-  lcd.print("A: Sim B: Não");
+  lcd.print("Play Again?");
+  lcd.setCursor(0,1);
+  lcd.print("A : Yes B : No");
   while (1) {
     var = keypad.waitForKey();
     if (var == 'a') {
@@ -1076,18 +1058,18 @@ void disarmedSplash() {
   if (sdStatus || saStatus) {
     lcd.clear();
     lcd.setCursor(2, 0);
-    lcd.print("BOMBA DESARMADA");
-    lcd.setCursor(3, 1);
-    lcd.print("TERRORISTAS VENCEM");
+    lcd.print("BOMB DISARMED");
+    lcd.setCursor(3,1);
+    lcd.print("CT WIN");
     digitalWrite(GREENLED, HIGH);
     delay(5000);
     digitalWrite(GREENLED, LOW);
   }
-  // código de fim
+
   lcd.clear();
-  lcd.print("Jogar Novamente?");
-  lcd.setCursor(0, 1);
-  lcd.print("A: Sim B: Não");
+  lcd.print("Play Again?");
+  lcd.setCursor(0,1);
+  lcd.print("A : Yes B : No");
   digitalWrite(REDLED, LOW);
   digitalWrite(GREENLED, LOW);
   while (1) {
@@ -1581,19 +1563,6 @@ void destroySabotage() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void domination() {
 
   //SETUP INITIAL TIME
@@ -1662,8 +1631,6 @@ void domination() {
         printTimeDom(millis() - iZoneTime, true);
       }
     }
-
-    //###########################CHECKINGS##################
 
     //Check If Game End
     if (minutos - aTime / 60000 == 0 && 59 - ((aTime / 1000) % 60) == 0) {

@@ -28,3 +28,6 @@ Fios Jumper para as conexões
 
 # Link da Simulação 
 https://wokwi.com/projects/394739396689906689
+
+# Foto do esquema de montagem
+![alt text](image.png)
